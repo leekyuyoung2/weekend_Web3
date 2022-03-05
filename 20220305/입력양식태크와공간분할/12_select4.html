@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DataList group</title>
+</head>   
+<body>
+    <h3>선택사항을 직접 입력하세요.</h3> 
+	<form>
+	    <label>전공 분야를 입력하세요.
+	    <input type="text" list="majorlist" name="major">
+	    <datalist id="majorlist">
+		    <option value="Software">소프트웨어</option>
+		    <option value="Robot">로봇</option>
+		    <option value="System">시스템</option>
+		    <option value="Service">서비스</option>
+		    <option value="Education">교육</option>
+	    </datalist>
+	    <p></p>
+	    <input type="submit" value="완료">
+	    <input type="reset" value="다시작성">
+	    </label>
+	</form>
+</body>
+</html>
