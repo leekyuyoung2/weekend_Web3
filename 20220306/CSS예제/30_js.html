@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <script>
+        var i, j;
+        outloop:   // label name
+        for(i=0; i<3; i++) {     
+            inloop:  // label name
+            for(j=0; j<3; j++) {  
+                if(i===1 && j===0) {
+                    continue outloop;
+                }
+                document.write("i = " + i + ", j = " + j + "<br>");
+            }
+        }
+    </script>
+</body>
+</html>

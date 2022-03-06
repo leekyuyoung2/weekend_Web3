@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <script>
+        var text;
+        var week=new Date().getDay();    // 0(일요일)~6(토요일) 
+        switch(week) {
+            case 1:    // 월요일
+            case 2:    // 화요일
+                text="HTML5";
+                break;
+            case 3:    // 수요일
+            case 4:    // 목요일
+                text="자바스크립트";
+                break;
+            case 5:    // 금요일 
+	        case 6:    // 토요일
+                text="영어";
+                break;
+            case 0:    //일요일
+	        default:
+                text="수영";
+        }
+	    document.write("오늘은 <b>" + text + "</b> 학습하는 날입니다. <p/>");
+    </script>
+</body>
+</html>
