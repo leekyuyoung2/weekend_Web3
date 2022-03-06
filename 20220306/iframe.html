@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>iframe 공간 분할 예제</title>
+</head>
+<body>
+	<h3>iframe 공간 분할 예제</h3>
+	<div style="background-color: #ffff00;">
+		<span>
+			<a href="intro.html" target="if_a">인사말</a>
+		</span>
+		<span>
+			<a href="lecture.html" target="if_a">강좌소개</a>
+		</span>
+		<span>
+			<a href="info.html" target="if_a">강사소개</a>
+		</span>
+		<span>
+			<a href="https://180camp.com/event/teacher" target="if_b">홈페이지</a>
+		</span>
+	</div>
+	<p></p>
+	<iframe src="basic.html" width="400" height="200" name="if_a" frameborder="0"></iframe>
+	<iframe src="basic.html" width="400" height="200" name="if_b" scroling="no"></iframe>
+	<div style="background-color: #ffff00">더조은 수원 캠퍼스</div>
+</body>
+</html>

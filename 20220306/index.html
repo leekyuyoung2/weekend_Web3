@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>문자 입력 양식</h2>
+	<form action="" method="get">
+		<fieldset>
+			<legend>개인 정보 입력</legend>
+				<p>이름 : <input type="text" name="name" required="required"> </p>
+				<p>학번 : <input type="text" name="sid" size="10" value="" required="required"> </p>
+				<p>학과 : <input type="text" name="major" value="컴퓨터과학" required="required"> </p>
+				<p>PW : <input type="password" name="pw" placeholder="비밀번호를입력하세요" required="required"> </p>
+				<p> <textarea rows="5" cols="50">텍스트를 작성하는 공간입니다. </textarea> </p>				
+				<h3>성별</h3>
+					<input type="radio" name="gender" value="m" >남자
+					<input type="radio" name="gender" value="f" checked="checked">여자
+				<h3>학년</h3>
+					<input type="radio" name="year" value="1" checked="checked">1학년
+					<input type="radio" name="year" value="2" >2학년
+					<input type="radio" name="year" value="3" >3학년
+					<input type="radio" name="year" value="4" >4학년
+				<h3>관심있는 과목</h3>
+					<input type="checkbox" name="subject" value="html5" checked="checked">html5<br>	
+					<input type="checkbox" name="subject" value="css3" >css3<br>
+					<input type="checkbox" name="subject" value="javascript" >javascript<br>
+					<input type="checkbox" name="subject" value="jquery" >jquery<br>
+				<h3>button</h3>
+					<button type="button" onclick="alert('1번버튼 클릭')">1번버튼</button>	
+				<h3>input tag button</h3>
+					<input type="button" onclick="alert('2번버튼 클릭')" value="2번버튼">	
+				<h3>image button</h3>
+					<button type="button" onclick="alert('3번버튼 클릭')"><img src="button.jpg">  </button>
+				<h3>관심있는 학습주제를 모두 선택</h3>
+					<select name="subjects" size="4" multiple="multiple">
+						<option value="1" selected="selected">html5</option>
+						<option value="2" >css3</option>
+						<option value="3" >javascript</option>
+						<option value="4" >jquery</option>
+					</select>		
+				<p></p>				
+				<input type="submit" value="전송">
+				<input type="reset" value="다시작성">			
+		</fieldset>
+	</form>
+</body>
+</html>

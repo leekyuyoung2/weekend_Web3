@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="">
+		<label>전공분야를 입력하세요</label> 
+		<input type="text" list="majorlist" name="major"> 
+			<datalist id="majorlist">
+				<option value="1">소프트웨어</option>
+				<option value="2">로봇</option>
+				<option value="3">시스템</option>
+				<option value="4">서비스</option>
+				<option value="5">교육</option>
+			</datalist>
+		
+		<h3>날자입력</h3>
+			today : <input type="date" name="today">
+		<h3>프로젝트 수행 기간</h3>
+			from:<input type="date" name="from" min="2010-01-01" max="2030-12-31">
+			to	:<input type="date" name="from" min="2010-01-01" max="2030-12-31">
+		<h3>생일(년/월) 입력</h3>
+			생일 : <input type="month" name="birth">
+		<h3>주간계획(년/주)입력</h3>
+			주간계획 : <input type="week" name="weekend">
+		<h3>현재시간 입력</h3>
+			time : <input type="time" name="now">
+		<h3>생년월일(년도 월 일 시간)입력</h3>
+			birthday : <input type="datetime-local" name="now">			
+	</form>
+</body>
+</html>
