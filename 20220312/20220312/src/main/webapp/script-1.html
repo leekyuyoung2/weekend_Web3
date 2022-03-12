@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style >
+		body{text-align:center;}
+	</style>
+	<script>		
+		function changeColor(){
+			var heading= document.querySelector('#heading2');
+			heading.style.color = 'blue';
+		}
+		
+		function test()
+		{
+			alert("test");
+		}
+	</script>
+	<script src="js/change-color.js"></script>
+</head>
+
+<body>
+	<h1 id="heading2" onclick="changeColor()" >자바스크립트2</h1>
+	<h1 id="heading">자바스크립트</h1>
+	<p id="text"  onclick="test()" >위 텍스트를 클릭해 보세요</p>
+	
+</body>
+</html>

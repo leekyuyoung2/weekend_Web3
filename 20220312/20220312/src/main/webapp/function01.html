@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+// 일반함수
+function addNumber(num1, num2){
+	return num1+num2;
+}
+/**
+ * (function(){로직}())
+ (function(매개변수){로직}(인수))
+ */
+// 익명 함수는 - 이름이 없다 java 익명 클래스 or lambda
+var sum = (function(a,b){
+	return a+b;
+}(100,200) );
+document.write("함수의 실행 결과 : " + sum);
+</script>
+</body>
+</html>

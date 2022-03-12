@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+//호이스팅 : 변수를 나중에 선언하더라고 미리 앞에서 선언한 것처럼 인식
+	var x = 10;
+	function displayName(){
+		console.log("x is " + x);
+		console.log("y is " + y);
+		var y = 20;
+	} 
+	displayName();
+</script>
+</body>
+</html>

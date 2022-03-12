@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+/**
+ *  let  블록안에서만 사용
+ 	-> 전역변수는 변수 이름과 초기값만 할당
+ 	-> 재 할당은 가능 재 선언은 안됨
+ 	-> 호이스팅이 없음
+ */
+ 
+function calcSum(n){
+ 		sum = 0;
+ 		for(let i= 1; i< n+1; i++){
+ 			sum += i;
+ 		} 		
+ 	}
+calcSum(10);
+console.log(sum); 	
+
+function hoistTeset(){
+	let x = 10;
+	console.log('x is =' + x);
+	let x = 200; // 에러 let은 재 선언 불가 
+} 	
+hoistTeset(); 	
+
+/**
+ * 자바스크립트 변수  사용
+ 1. 전역변수 사용 최소화
+ 2. var 변수는 함수의 시작 부분에서 선언
+ 3. for문에서 카운터 변수는 var나 생략 보다는 let 변수로 선언
+ 4. ES6 var 보다는 let을 사용
+ */
+
+
+
+</script>
+</body>
+</html>
