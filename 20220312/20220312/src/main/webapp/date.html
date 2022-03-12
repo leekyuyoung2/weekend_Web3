@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+// 프로퍼티 : 객체의 특성이나 속성  : java 맴버변수...
+// 메서드
+	let numbers = new Array(); // 배열의 크기를 지정하지 않을때
+	numbers = new Array(10);   // 배열의 크기를 지정할때
+	numbers = ["one","two","three"]; // 배열 초기값
+	numbers = Array("one","two","three");// 배열 초기값
+	let now = new Date();
+	document.write("현재시간은 : "+now.toLocaleString());
+	for(let i=0; i< numbers.length; i++){
+		document.write("<p>"+numbers[i]+"</p>")
+	}
+	numbers.forEach( e=>document.write("<p>"+e+"</p>") )
+	
+	let nums = [1,2,3];
+	let chars = ["a","b","c","d"];
+	let numsChars = nums.concat(chars);
+	let charsNums = chars.concat(nums);
+	document.write(numsChars+"<br>")
+	document.write(charsNums+"<br>")
+	
+	let string1 = nums.join();
+	document.write("구분자 없이:" + string1 + "<br>");
+	let string2 = nums.join('/');
+	document.write("구분자 지정:" + string2 + "<br>");
+	let string4 = nums.join('');
+	document.write("구분자 지정:" + string4 + "<br>");
+	
+</script>
+
+</body>
+</html>

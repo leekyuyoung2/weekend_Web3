@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name = "viewport" content = "with=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+<link rel="stylesheet" href = 'css/function.css'>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	let changeBtn = document.querySelector("#change");
+	changeBtn.onclick = changeColor;
+	function changeColor(){
+		document.querySelector("p").style.color="#f00";
+	}	
+} );	
+</script>
+</head>
+
+<body>
+	<button id="change">글자색 바꾸기</button>
+	<p>
+		윤석열 대통령 당선인은 12일 서초구 서초동 자택에서 휴식을 취하며 인수위 인선안을 막판 고심 중인 것으로 보인다.		
+	</p>	
+</body>
+
+
+</html>

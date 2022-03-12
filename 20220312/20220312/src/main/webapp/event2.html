@@ -5,6 +5,12 @@
 <meta name = "viewport" content = "with=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" href = 'css/function.css'>
+<script>
+	function changeBg(color){
+		let result =  document.querySelector("#result");
+		result.style.backgroundColor = color;
+	}
+</script>
 </head>
 <body>
 <!--
@@ -16,9 +22,9 @@
 이벤트가 발생했을때 처리하는 함수 = 이벤트 핸들러
  -->
  <ul>
- 	<li><a href="#" onclick="alert('버튼을 클릭했습니다.')" >Green</a> </li>
- 	<li><a href="#" onclick="alert('버튼을 클릭했습니다.')" >Orange</a> </li>
- 	<li><a href="#" onclick="alert('버튼을 클릭했습니다.')" >Purple</a> </li>
+ 	<li><a href="#" onclick="changeBg('green')" >Green</a> </li>
+ 	<li><a href="#" onclick="changeBg('orange')" >Orange</a> </li>
+ 	<li><a href="#" onclick="changeBg('purple')" >Purple</a> </li>
  </ul>
  <div id = 'result'></div>
 </body>

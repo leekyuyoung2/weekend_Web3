@@ -9,6 +9,7 @@ ul{
 	with:500px;
 	margin:10px auto;
 	padding:0;
+	text-align:center;
 }
 li{
 	display:inline-block;
