@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/login")
+@WebServlet("/login/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
     public Login() {
-        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -29,26 +26,24 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id =  request.getParameter("id");
+		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		// 이부분은 데이터베이스에 있는 회원 모록을 조회하는 걸 대신한다
 		if(id.equals("admin") && password.equals("admin1234")) {
-//			request.setAttribute("isSuccess", true);
-			response.addCookie(new Cookie("id", "admin"));
-//			response.addCookie(new Cookie("password", "admin1234"));
+			Cookie c = new Cookie("id", "admin");
+			c.setMaxAge(60*5); // 5 minuts
+			response.addCookie(c);
+			response.sendRedirect("success.html");
 		}else {
-//			request.setAttribute("isSuccess", false);
+			response.sendRedirect("fail.html");
 		}
-		RequestDispatcher rd= request.getRequestDispatcher("main.jsp");
-		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

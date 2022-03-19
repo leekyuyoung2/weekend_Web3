@@ -1,26 +1,25 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Calc
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/calc")
+public class Calc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Calc() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,26 +28,28 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id =  request.getParameter("id");
-		String password = request.getParameter("password");
-		if(id.equals("admin") && password.equals("admin1234")) {
-//			request.setAttribute("isSuccess", true);
-			response.addCookie(new Cookie("id", "admin"));
-//			response.addCookie(new Cookie("password", "admin1234"));
-		}else {
-//			request.setAttribute("isSuccess", false);
+		int n1 =  Integer.valueOf( request.getParameter("n1") );
+		int n2 =  Integer.valueOf( request.getParameter("n2") );
+		String op =  request.getParameter("operation");
+		long result = 0;
+		switch (op) {
+		case "+": result = n1 + n2;	break;
+		case "-": result = n1 - n2;	break;
+		case "x": result = n1 * n2;	break;
+		case "/": result = n1 / n2;	break;
+		default:
+			break;
 		}
-		RequestDispatcher rd= request.getRequestDispatcher("main.jsp");
-		rd.forward(request, response);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out= response.getWriter();
+		out.append("<html><body><h2>계산기 서블릿</h2>")
+		.append("계산 결과 : " +result+"</body></html>");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
