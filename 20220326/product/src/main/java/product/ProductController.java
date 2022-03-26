@@ -26,8 +26,8 @@ public class ProductController extends HttpServlet {
     
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action =  request.getParameter("action");  // 클라이언트로 부터 전달 받은 요청
-		String view = ""; // 응답을 어떤 jsp를 호출할 것인지 정하변수
+		String action =  request.getParameter("action");  
+		String view = "";  
 		if(action == null) {
 			getServletContext()
 			.getRequestDispatcher("/pcontroller?action=list")
@@ -54,14 +54,14 @@ public class ProductController extends HttpServlet {
 
 	private String info(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("info", service.find(request.getParameter("id")));
-		return "productInfo.jsp";
+		return "/productInfo.jsp";
 	}
 
 
 
 	private String list(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("products", service.findAll());
-		return "productList.jsp";
+		return "/productList.jsp";
 	}
 	
 
