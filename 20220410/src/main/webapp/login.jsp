@@ -15,7 +15,9 @@ for(Cookie c : cookies){
 		cookieLoginID = c.getValue();
 	}
 }
-if(!cookieLoginID.isEmpty()){
+String tryLoginId = (String)request.getAttribute("id");
+// 전에 로그인한 정보를 기록한 쿠키가 있고.. 로그인시도를 하지 않았다면
+if(!cookieLoginID.isEmpty() && tryLoginId == null){
 	request.setAttribute("id", cookieLoginID);
 }
 %>

@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("doPost  loginServlet..............");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		Boolean ischecked = false;
@@ -69,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}else {
 			request.setAttribute("error", "회원정보가 없습니다. 회원가입 또는 회원정보를 확인해 주세요");
+			System.out.println(request.getAttribute("id"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		}

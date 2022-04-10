@@ -7,9 +7,10 @@
 <title>회원전용</title>
 </head>
 <%
-	if(session.getAttribute("sessionid") == null){		
+	// 필터로 대처함
+	/* if(session.getAttribute("sessionid") == null){		
 		response.sendRedirect(request.getContextPath()+"/login.jsp");
-	}
+	} */
 	
 	
 %>
