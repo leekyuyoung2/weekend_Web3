@@ -1,3 +1,10 @@
+<%@page import="util.FileUtil"%>
+<%@page import="java.io.File"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="dao.FeedDAO"%>
@@ -10,8 +17,39 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--
+	파일 컨텐츠 저장
+	웹 서버가 구동되는 루트 디렉토리를 기준으로 파일이 저장
+	루트 디렉토리 경로는 application.getRealPath() 함수를 통해 알수 있음  
+-->
 <%
-	request.setCharacterEncoding("utf-8");
+	ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
+	List<FileItem> items =  sfu.parseRequest(request);
+	Iterator iter =  items.iterator();
+	byte[] data = null;
+	String uid=null,ucon=null,fname=null;
+	while(iter.hasNext()){
+		FileItem item =  (FileItem)iter.next();
+		String name = item.getFieldName();
+		if(item.isFormField()){
+			String value = item.getString("UTF-8");
+			if(name.equals("id")) uid = value;
+			else if(name.equals("content")) ucon=value;
+		}else{
+			if(name.equals("image")){
+				fname = item.getName();
+				data = item.get();
+				String root = application.getRealPath(File.separator);
+				FileUtil.saveImage(root, fname, data);
+			}
+		}
+	}
+	out.print(uid+"<br>");
+	out.print(ucon+"<br>");
+	out.print(fname+"<br>");
+	out.print(data+"<br>");
+	out.print("루트디렉터리 "+application.getRealPath(File.separator));
+	/* request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("id");
 	String ucont = request.getParameter("content");
 	out.print("id =" + uid+"<br><hr>");
@@ -25,7 +63,7 @@
 	while( (line = br.readLine()) !=null ){
 		str += line+"<br>";
 	}
-	out.print(str);
+	out.print(str); */
 	
 	
 	/* FeedDAO dao = new FeedDAO();
