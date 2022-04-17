@@ -44,6 +44,13 @@
 			}
 		}
 	}
+	FeedDAO dao = new FeedDAO();
+	if(dao.insert(uid, ucon, fname)){
+		response.sendRedirect("main.jsp");
+	}
+	else{
+		out.print("작성글의 업로드중 오류가 발생했습니다.");
+	}
 	out.print(uid+"<br>");
 	out.print(ucon+"<br>");
 	out.print(fname+"<br>");

@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtil {
-	public static void saveImage(String root, String fname, byte[] data) throws IOException {
+	public static void saveImage(String root
+			, String fname, byte[] data) 
+					throws IOException {
 		root += "/images";
 		File file = new File(root);
 		if(!file.exists()) file.mkdir();

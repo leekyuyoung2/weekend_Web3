@@ -11,8 +11,8 @@ import dto.FeedDTO;
 
 public class FeedDAO {
 
-	public boolean insert(String uid,String ucont) {		
-		String sql = "insert into feed(id,content) values(?,?)";
+	public boolean insert(String uid,String ucont,String uimages) {		
+		String sql = "insert into feed(id,content,images) values(?,?,?)";
 		try(
 				Connection conn =  ConnectionPool.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -20,6 +20,7 @@ public class FeedDAO {
 		{
 			pstmt.setString(1, uid);
 			pstmt.setString(2, ucont);
+			pstmt.setString(3, uimages);
 			int count = pstmt.executeUpdate();
 			return count == 1;
 		}catch (Exception e) {
@@ -42,6 +43,7 @@ public class FeedDAO {
 				dto.setId( rs.getString("id"));
 				dto.setContent(rs.getString("content"));
 				dto.setTs(rs.getTimestamp("ts"));
+				dto.setImages(rs.getString("images"));
 				lists.add(dto);
 			}
 			

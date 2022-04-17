@@ -6,6 +6,14 @@ public class FeedDTO {
 	private String id;
 	private String content;
 	private Timestamp ts;
+	private String images;
+	
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
+	}
 	public String getId() {
 		return id;
 	}
