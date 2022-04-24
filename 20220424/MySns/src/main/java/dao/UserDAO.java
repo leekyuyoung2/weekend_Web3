@@ -13,6 +13,21 @@ import common.DbCon;
 import dto.UserDTO;
 
 public class UserDAO {
+	
+	public int deleteById(String id) {
+		String sql = "delete from user where id = ?";		
+		try(Connection conn = DbCon.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				)
+		{
+			pstmt.setString(1, id);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	public List<UserDTO> getAllUsers(){
 		List<UserDTO> lists= new ArrayList<UserDTO>();
 		String sql = "select * from user";
@@ -38,7 +53,7 @@ public class UserDAO {
 	
 	
 	public int insert(UserDTO dto) {
-		String sql = "insert into(id, password, name) values(?, ?, ?) ";
+		String sql = "insert into user(id, password, name) values(?, ?, ?) ";
 		try (Connection conn = DbCon.getConnection(); PreparedStatement pstmt = conn.prepareCall(sql);) {
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());
@@ -52,8 +67,7 @@ public class UserDAO {
 	}
 
 	public boolean findByUserId(String id) {
-		String sql = "select * from user where id = ?";	
-		
+		String sql = "select * from user where id = ?";		
 		try (Connection conn = DbCon.getConnection();
 				PreparedStatement pstmt = conn.prepareCall(sql);
 			) {			

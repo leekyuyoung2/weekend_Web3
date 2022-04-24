@@ -7,6 +7,14 @@ public class FeedDTO {
     private String id;    
     private String content;
     private Timestamp ts;
+    private String images;
+    
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
+	}
 	public Long getNo() {
 		return no;
 	}
@@ -33,8 +41,9 @@ public class FeedDTO {
 	}
 	@Override
 	public String toString() {
-		return "FeedDTO [no=" + no + ", id=" + id + ", content=" + content + ", ts=" + ts + "]";
+		return "FeedDTO [no=" + no + ", id=" + id + ", content=" + content + ", ts=" + ts + ", images=" + images + "]";
 	}
+	
     
     
     
