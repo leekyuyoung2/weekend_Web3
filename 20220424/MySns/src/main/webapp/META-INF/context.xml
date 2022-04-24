@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/myfeed"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.h2.Driver"
+        url="jdbc:h2:tcp://localhost/~/test"
+        username="sa"
+        password="admin1234"
+        maxTotal="16"
+        maxIdle="4"
+        maxWaitMillis="-1" />
+    <Resource name="jdbc/mysql"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/mysns?serverTimezone=UTC"
+        username="guest"
+        password="guest"
+        maxTotal="16"
+        maxIdle="4"
+        maxWaitMillis="-1" />    
+</Context>
