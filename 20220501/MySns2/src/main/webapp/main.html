@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="data"></div>
+</body>
+</html>
+
+<script src="js/jquery-3.6.0.min.js" ></script>
+<script src="js/core.js"></script>
+<script>
+$(document).ready(function(){
+	Page.init();
+});
+</script>
+
+<script>
+var url = 'main.jsp';
+var param = null;
+AJAX.call(url,param,function(data){
+	var code = data.trim();	
+	$("#data").html(data);
+	//console.log(data);
+});	
+</script>
+
+

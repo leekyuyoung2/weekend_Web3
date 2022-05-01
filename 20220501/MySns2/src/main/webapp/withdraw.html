@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원탈퇴</title>
+</head>
+<body>
+<table align=center>
+<tr><td colspan=2 align=center height=40><b>회원탈퇴</b><td></tr>
+<tr>
+	<td align=right>아이디&nbsp;</td>
+	<td><input type="text" id="id" placeholder="Email address" required></td>
+</tr>
+<tr>
+	<td align=right>패스워드&nbsp;</td>
+	<td><input type="password" id="password" required></td>
+</tr>
+<tr>
+	<td colspan=2 align=center height=50>
+		<input type="submit" value="회원탈퇴하기" onclick="withdraw()">
+	</td>
+</tr>
+</table>
+</body>
+</html>
+
+<script src="js/jquery-3.6.0.min.js" ></script>
+<script src="js/core.js"></script>
+<script>
+$(document).ready(function(){
+	Page.init();
+});
+</script>
+
+<script>
+function withdraw(){
+	var id = $("#id").val().trim();
+    if (id == "") {
+        alert("아이디를 입력해 주세요.");
+        $("#id").focus();
+        return;
+    }
+ 
+    var ps = $("#password").val().trim();
+    if (ps == "") {
+        alert("패스워드를 입력해 주세요.");
+        $("#password").focus();
+        return;
+    }
+	var url = "withdraw.jsp"
+	param = {
+			"id" :$("#id").val().trim(),
+			"password":$("#password").val().trim()
+	}
+	AJAX.call(url,param,function(data){
+		var code = data.trim();
+		if(code == 'NA') alert("아이디가 존재하지 않습니다.");
+		else if(code == 'ER') alert("탈퇴처리중 오류가 발생했습니다.");
+		else if(code =='PSWNA') alert("패스워드가 일치하지 않습니다.");
+		else{
+			alert("회원 탈퇴 처리가 완료 되었습니다.");
+			window.location.href = "login.html";
+		}
+			
+	});	
+}
+</script>

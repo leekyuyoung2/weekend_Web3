@@ -1,0 +1,93 @@
+<html>
+<head>
+	<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/core.css">
+	<title>MySNS</title>
+	<style>
+		.desc {
+			float: left;
+			width: 100%;
+			color: #888;
+			font-size: 0.9em;
+		}
+	</style>
+</head>
+<body>
+<div class="page-hdr">MySNS</div>
+<div class="page-body">
+	<div class="section pad-24 mtop-30">
+		<input id="id" type="text" placeholder="아이디 (이메일주소)">
+		<input id="ps" type="password" class="mtop-10" placeholder="패스워드">
+		<input id="ps2" type="password" class="mtop-10" placeholder="패스워드 (확인)">
+		<input id="name" type="text" class="mtop-10" placeholder="이름 (닉네임)">
+		<input type="submit" class="mtop-20" value="회원가입하기" onclick="signup()">
+	</div>
+	<div class="section pad-24 mtop-30">
+		<div class="desc mtop-20 mbot-20">
+			회원 가입시 MySNS의 약관에 동의하신 것으로 간주합니다.
+		</div>
+		<a href="#"><div class="button">약관보기</div></a>
+	</div>
+</div>
+<div class="page-footer">Copyright: mysns.com, 202x</div>
+</body>
+</html>
+
+<script src="js/jquery-3.6.0.min.js" ></script>
+<script src="js/core.js"></script>
+
+<script>
+function signup(){
+	var id = $("#id").val().trim();
+    if (id == "") {
+        alert("아이디를 입력해 주세요.");
+        $("#id").focus();
+        return;
+    }
+ 
+    var ps = $("#ps").val().trim();
+    if (ps == "") {
+        alert("패스워드를 입력해 주세요.");
+        $("#ps").focus();
+        return;
+    }
+    var ps2 = $("#ps2").val().trim();
+    if (ps2 == "") {
+        alert("패스워드 확인을 입력해 주세요.");
+        $("#ps2").focus();
+        return;
+    }
+    
+    var name = $("#name").val().trim();
+    if (name == "") {
+        alert("이름을 입력해 주세요.");
+        $("#name").focus();
+        return;
+    }
+    
+    var url = "signup.jsp"
+   	param = {
+   			"id" :$("#id").val().trim(),
+   			"ps":$("#ps").val().trim(),
+   			"ps2":$("#ps2").val().trim(),
+   			"name":$("#name").val().trim()
+   	}
+    // 비번과 비번확인 같은 값이 check 여기서
+    if($("#ps").val().trim() != $("#ps2").val().trim())
+    { 
+    	alert("비밀번호 확인이 틀립니다.");
+    	return;
+    }
+    
+   	AJAX.call(url,param,function(data){
+   		var code = data.trim();
+   		if(code == "NA") alert("사용할수 없는 아이디 입니다.");
+   		else if(code == "ER") alert("회원가입중 에러가 발생했습니다. 관리자에게 문의하세요");
+   		else {
+   			alert("회원가입에 성공했습니다. ");
+   			window.location.href = "main.html";
+   		}
+   	});
+}
+</script>

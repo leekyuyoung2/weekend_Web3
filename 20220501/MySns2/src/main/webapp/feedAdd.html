@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<table align=center>
+<tr><td colspan=2 align=center height=40><b>글작성</b><td></tr>
+<tr>
+	<td align=right>아이디&nbsp;</td> 
+	<td><input type="text" id="id" placeholder="Email address" required></td>
+</tr>
+<tr>
+	<td align=right>작성글&nbsp;</td> 
+	<td><textarea id="content" rows=5 cols=20></textarea></td>
+</tr>
+<tr>
+	<td align=right>이미지&nbsp;</td> 
+	<td><input type="file" id="image"></td>
+</tr>
+<tr>
+	<td colspan=2 align=center height=50>
+		<input type="submit" value="업로드하기" onclick="upload()">
+	</td>
+</tr>
+</table>
+</body>
+</html>
+
+<script src="js/jquery-3.6.0.min.js" ></script>
+<script src="js/core.js"></script>
+<script>
+$(document).ready(function(){
+	Page.init();
+});
+</script>
+
+<script>
+function upload(){
+	var id = $("#id").val().trim();
+    if (id == "") {
+        alert("아이디를 입력해 주세요.");
+        $("#id").focus();
+        return;
+    }
+ 
+    var content = $("#content").val().trim();
+    if (content == "") {
+        alert("작성들을 입력해 주세요.");
+        $("#content").focus();
+        return;
+    }
+    
+    var imgobj = $("#image")[0].files[0]
+    var params =  new FormData()  // multipart form을 전송하기 위해 웹표준에서 제공하는 객체
+    params.append("id",id);
+    params.append("content",content);
+    if(imgobj != null) params.append("image",imgobj);
+    var url = 'feedAdd.jsp';
+    AJAX.call(url,params,function(data){
+		var code = data.trim();
+		if(code == "ER") alert("업로드중 에러가 발생했습니다.");
+		else {
+			alert("글이 등록되었습니다.");
+			window.location.href = "main.html";
+		}
+    },true);
+}
+</script>
