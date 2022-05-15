@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MySNS</title>
+<link rel="stylesheet" href="../css/core.css">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class = 'page-hdr'>MySNS</div>
+<div class = 'page-body'>
+	<div class = 'page-mnu'>
+		<div class = 'menu' onclick='addFeed()'>글쓰기</div>
+		<div class = 'menu' onclick=''>친구보기</div>
+		<div class = 'menu' onclick=''>내정보</div>
+	</div>
+</div>
+<table id='list' class = 'section mtop-20 pad=16'></table>
+<div class = 'section mtop-10 mbot-30 pad-16'>
+	<div class="button" onclick='getNext()' >작성글 더보기</div>
+</div>
+</body>
+</html>
+
+<script src="../js/jquery-3.6.0.min.js" ></script>
+<script src="../js/core.js"></script>
+<script>
+$(document).ready(function(){
+	Page.init(start);
+});
+</script>
+var minNo = -1;
+
+<script>
+function start(uid){
+	var url = '../jsp/feedGetGroup.jsp';
+	var param = null;
+	AJAX.call(url,param,function(data){		
+		var feeds = JSON.parse( data.trim());
+		if(feeds.length > 0){
+			minNo = feeds[feeds.length-1].no;
+		}			
+		show(feeds);
+	});
+}	
+
+function show(feeds){
+	var str = "";
+    for (var i=0; i<feeds.length; i++) {
+        var img = feeds[i].images, imgstr = "";
+        if (img != null) {
+            imgstr = "<img src='images/" + img + "' width=100%>";
+        } 	
+        str += "<tr>";
+        str += "<td><small>" + feeds[i].id + "</small></td>";
+        str += "<td><small>&nbsp;(" + feeds[i].ts + ")</small></td>";
+        str += "</tr>";
+        str += "<tr><td colspan=2>" + imgstr + "</td></tr>";
+        str += "<tr><td colspan=2>" + feeds[i].content + "</td></tr>";
+        str += "<tr><td colspan=2 height=40><hr></td></tr>";
+    }
+    $("#list").append(str);
+
+}
+function addFeed(){
+	window.location.href = "feedAdd.html";
+}
+
+function getNext(){
+	var param = {maxNo:minNo};
+	AJAX.call("../jsp/feedGetGroup.jsp",param,function(data){
+		var feeds = JSON.parse(data.trim());
+		if(feeds.length > 0){
+			minNo = feeds[feeds.length-1].no;
+		}
+		show(feeds);
+	});
+}
+</script>
+
+
