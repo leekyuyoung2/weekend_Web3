@@ -29,10 +29,25 @@ public class FeedDAO {
 		try(Connection conn = ConnectionPool.get();) 
 		{			
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			int max = (!rs.next())? 0 : rs.getInt("no");
-			JSONObject jsonobj = (JSONObject) (new JSONParser()).parse(jsonstr);
-			jsonobj.put("no", max);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonobj = (JSONObject) parser.parse(jsonstr);
+			jsonobj.put("no", max);			
+			
+			// add 'user' property....  사용자 정보를 추가로 저장
+			String uid =  jsonobj.get("id").toString();
+			sql = "select jsonstr from user where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String usrstr = rs.getString("jsonstr");
+				JSONObject usrobj = (JSONObject)parser.parse(usrstr);
+				usrobj.remove("password");
+				usrobj.remove("ts");
+				usrobj.put("user", usrobj);
+			}
 			
 			sql = "insert into(no, id,jsonstr) values(?,?,?)";			
 			pstmt = conn.prepareStatement(sql);
