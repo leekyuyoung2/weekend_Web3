@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+	<insert id="insert" parameterType="hashMap"
+		useGeneratedKeys="true" keyProperty="book_id">  
+    <![CDATA[
+    insert into book
+    (title, category, price) 
+    values
+    (#{title}, #{category}, #{price})
+    ]]>
+	</insert>
+
+	<select id="select_detail" parameterType="hashMap"
+		resultType="hashMap">
+	<![CDATA[
+		select 
+			book_id, title,category,price,insert_date 
+		  from book 
+		where book_id = #{bookId};
+	]]>
+	</select>
+
+	<update id="update" parameterType="hashMap">
+	<![CDATA[	
+		update book 
+			set title = #{title} , category = #{category}, price = #{price}
+		where book_id = #{bookId}
+	]]>
+	</update>
+	
+	<delete id="delete" parameterType="hashMap">
+	<![CDATA[
+		delete 
+			from book
+		where book_id = #{bookId}
+	]]>
+	</delete>
+	
+	<delete id="deletevo" parameterType="com.spring.book.BookVO">
+	<![CDATA[
+		delete 
+			from book
+		where book_id = #{book_id}
+	]]>
+	</delete>
+	
+	
+	<!-- <select id="selectAll" parameterType="hashMap" resultType="hashMap">
+	<![CDATA[
+		SELECT book_id, title, category, price, insert_date
+			FROM bookdb.book
+				order by insert_date desc 
+	]]>	
+	</select> -->
+	
+	<select id="selectAll" parameterType="hashMap" resultType="hashMap">
+	<![CDATA[
+		select 
+			b.book_id, b.title ,b.category ,b.price,b.insert_date
+		 from	bookdb.book b
+		where 1=1
+	]]>	 
+		<if test="keyword != null and keyword !=''">
+			and (b.title like  CONCAT('%',#{keyword}, '%')
+				or b.category like CONCAT('%',#{keyword}, '%') )
+		</if>
+		order by b.insert_date DESC
+	</select>
+
+	<!-- 출력형태를 map형태가 아닌 vo 형태로 변경한다. -->
+	<select id="selectVoAll" parameterType="hashMap" resultType="com.spring.book.BookVO">
+	<![CDATA[
+		select 
+			b.book_id, b.title ,b.category ,b.price,b.insert_date
+		 from	bookdb.book b
+		where 1=1
+	]]>	 
+		<if test="keyword != null and keyword !=''">
+			and (b.title like  CONCAT('%',#{keyword}, '%')
+				or b.category like CONCAT('%',#{keyword}, '%') )
+		</if>
+		order by b.insert_date DESC
+	</select>
+	
+	<!-- 출력형태를 map형태가 아닌 vo 형태로 변경한다. -->
+	<select id="selectVoAllPage" parameterType="hashMap" resultType="com.spring.book.BookVO">
+	select
+		book_id, title ,category ,price,insert_date
+	from(
+		select 
+			b.book_id, b.title ,b.category ,b.price,b.insert_date
+		 from	bookdb.book b
+		where 1=1
+		<if test="keyword != null and keyword !=''">
+			and (b.title like  CONCAT('%',#{keyword}, '%')
+				or b.category like CONCAT('%',#{keyword}, '%') )
+		</if>
+		order by b.insert_date DESC
+	)	
+	<choose>
+		<when test="page !=null and page != '' ">
+			orders limit 10 offset #{page}
+		</when>		
+		<otherwise>
+			orders limit 10 offset 0
+		</otherwise>
+	</choose>
+	</select>
+	
+	
+
+
+
+</mapper>
