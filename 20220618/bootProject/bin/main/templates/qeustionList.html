@@ -1,0 +1,21 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th> subject</th>      
+      <th> createDate</th>
+    </tr>
+  </thead>
+  <tbody>  
+    <!--<tr th:each="question: ${questionList}">      
+	      <td th:text="${question.subject}"/>
+	      <td th:text="${question.content}"/>
+	      <td th:text="${question.createDate}"/>      
+    </tr>-->
+    <tr th:each = "question, index:${questionList}">
+			<td>
+				<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+			</td>		
+			<td th:text = "${question.createDate}"></td>
+		</tr>
+  </tbody>
+</table>

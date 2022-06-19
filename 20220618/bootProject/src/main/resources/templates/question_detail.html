@@ -1,0 +1,9 @@
+<!--질문에 답변을 자장할 form을 만든다-->
+
+<h1 th:text="${question.subject}"></h1>
+<div th:text="${question.content}"></div>
+
+<form th:action = "@{|/answer/create/${question.id}|}" method="post">
+	<textarea name='content' id = 'content' rows = '15'></textarea>
+	<input type="submit" value="답변등록">
+</form>
