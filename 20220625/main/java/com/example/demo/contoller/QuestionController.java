@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.entity.AnswerForm;
 import com.example.demo.entity.Question;
 import com.example.demo.entity.QuestionForm;
 import com.example.demo.repository.QuestionRepository;
@@ -55,6 +57,14 @@ public class QuestionController {
     }
 	
 	
+	@RequestMapping("/pagelist")
+	public String pagelist(Model model, @RequestParam(value = "page", defaultValue = "0") int page)
+	{
+		Page<Question> paging =  questionService.getList(page);
+		model.addAttribute("paging",paging);
+		return "question_list";
+	}
+	
 	@RequestMapping("/list")
 //	@ResponseBody
 	public String list(Model model) {
@@ -67,11 +77,15 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
-		Question question =  questionService.findById(id);
+	public String detail(Model model, @PathVariable("id") Integer id,AnswerForm answerForm) {
+		Question question =  questionService.getQuestion(id);
 		model.addAttribute("question",question);
 		return "question_detail";
 	}
+	
+	
+	
+	
 	
 	
 }
