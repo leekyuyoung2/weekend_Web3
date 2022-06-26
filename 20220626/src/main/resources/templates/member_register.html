@@ -1,0 +1,33 @@
+<html layout:decorate='~{layout}'>
+<div layout:fragment='content' class='container my-3'>
+	<form th:action="@{/members/register}" th:object="${memberForm}"
+		method="post">
+		<div th:replace='form_errors::formErrorsFragment'></div>
+		<div class="mb-3">
+			<label for="exampleInputEmail1" class="form-label">사용자 ID</label> <input
+				th:field="*{usernsme}" type="text" class="form-control"
+				id="exampleInputEmail1" aria-describedby="emailHelp">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputPassword1" class="form-label">비밀번호</label> <input
+				th:field="*{password}" type="password" class="form-control"
+				id="exampleInputPassword1">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputPassword1" class="form-label">비밀번호 확인</label>
+			<input th:field="*{password_confirm}" type="password"
+				class="form-control" id="exampleInputPassword1">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputPassword1" class="form-label">이메일</label> <input
+				th:field="*{email}" type="email" class="form-control"
+				id="exampleInputPassword1">
+		</div>
+		<div class="mb-3 form-check">
+			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+			<label class="form-check-label" for="exampleCheck1">Check me
+				out</label>
+		</div>
+		<button type="submit" class="btn btn-primary">회원가입</button>
+	</form>
+</div>

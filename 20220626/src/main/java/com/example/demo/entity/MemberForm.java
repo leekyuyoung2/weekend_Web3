@@ -19,7 +19,7 @@ public class MemberForm {
 	@NotEmpty(message="비밀번호 확인은 필수 입니다.")
 	private String password_confirm;  // 확인용
 	
-	@NotEmpty(message="비밀번호 확인은 필수 입니다.")
+	@NotEmpty(message="이메일은 필수 입니다.")
 	@Email
 	private String email;
 }
