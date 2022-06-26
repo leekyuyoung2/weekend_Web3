@@ -1,0 +1,43 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+    <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+        <!-- <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div> -->
+        <!-- 공통 템플릿 이용 -->
+        <div th:replace = 'form_errors::formErrorsFragment'></div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">제목</label>
+            <input type="text" th:field="*{subject}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+        </div>
+        <input type="submit" value="저장하기" class="btn btn-primary my-2">
+    </form>
+</div>
+</html>
+<!-- <html layout:decorate='~{layout}'>  템플릿 상속
+<div layout:fragment='content' class="container my-3">
+	<form th:action = '@{/question/create}' method="post" th:object="${questionFrom}">
+	<div class = 'alert alert-danger' role='alert' th:if="${#fields.hasAnyErrors()}">
+		<div th:each="err:${fields.allErrors()}" th:text="${err}"/>
+		<h1>에러가 발생했습니다.</h1>
+	</div>
+	<div class="mb-3">
+	<h2 class="border-bottom py-2" th:text="질문등록"></h2>
+		<label for="exampleFormControlInput1" class="form-label">제목</label> 
+		<input type="text" class="form-control"
+			name="subject" placeholder="제목을 입력하세요">
+	</div>
+	<div class="mb-3">
+		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
+		<textarea class="form-control" name='content'	
+		rows="15" placeholder="내용을 입력하세요"></textarea>
+	</div>
+	<button type="submit" class="btn btn-primary">저장하기</button>
+	</form>
+</div>
+</html> -->

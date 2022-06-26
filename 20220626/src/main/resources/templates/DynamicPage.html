@@ -1,0 +1,37 @@
+<script>
+function create_data(){
+	let area =  document.getElementById('areadiv');
+	console.log( area.innerHTML.qujerySelectorAll("#id") );
+	
+	console.log(area);
+	var str = ""; 
+	str = "<tr>";
+	str +="<td id='id' style= 'display:none;'> 001 </td>"
+	str +="<td> aaaa </td>"
+	str +="<td> content.... adsfadsfdsaf </td>"
+	str +="<td> 2022-06-18 12:45:25 </td>"
+	str +="</tr>"
+	area.innerHTML += str; 
+	
+			
+}
+</script>
+
+<h1>dynamic page test</h1>
+<div id = 'area'></div>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th style ='display:none;'> id </th>	
+      <th> subject</th>
+      <th> content</th>
+      <th> createDate</th>
+    </tr>
+  </thead>
+  <tbody id = 'areadiv'>
+  	      
+  </tbody>
+</table>
+<br><br>
+<input type="button" value="add data" onclick="create_data();">
